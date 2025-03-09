@@ -34,10 +34,14 @@ When(/^the user (clicks|types|selects|actions|...) ?(?: in)? the (button|field|l
     pageObject.sendAction(action, elementType, elementId, content);
 });
 
-Then(/^the (element|section|field|button|list|image|...) "([^"]*)" should "([^"]*)"?(?: "([^"]*)")?$/, (elementType, elementId, condition, content) => {
+Then(/^the (element|section|field|button|list|image|...) "([^"]*)" should ?(?: be)? "([^"]*)"?(?: "([^"]*)")?$/, (elementType, elementId, condition, content) => {
     pageObject._validate(elementType, elementId, condition, content);
 });
 
-Given('the prices should be in {word} order', (sortMethod) => {
+Then('the prices should be in {word} order', (sortMethod) => {
     pageObject._sortItems(sortMethod);
+});
+
+Then('the {string} of {string} is stored in {string} variable', (elementDetail, group, storeVariable) => {
+    pageObject._captureElementDetail(elementDetail, group, storeVariable);
 });

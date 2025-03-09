@@ -26,6 +26,7 @@ module.exports = class Main {
         this.request         = {};
         this.response        = {};
         this.currentEndPoint = {};
+        this.storedVariables = {};
     }
 
     _loadEndPoint(endPoint){
@@ -172,5 +173,14 @@ module.exports = class Main {
         });
     }
 
-
+    _captureElementDetail(elementDetail, group, storeVariable){
+        return cy.get('.inventory_item_description:contains("' + group + '")')
+            .find('.'+elementDetail)
+            .invoke('text')
+            .then((priceText) => {
+                const price = parseFloat(priceText.replace('$', '')); // Convert to number
+                cy.log('Price:', price);
+                this.storedVariables[storeVariable] = price;
+            });
+    }
 }

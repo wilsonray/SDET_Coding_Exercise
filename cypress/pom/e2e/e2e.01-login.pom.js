@@ -17,7 +17,13 @@ class Login extends Main {
             addToCartFleeceJacket    : () => cy.get('#add-to-cart-sauce-labs-fleece-jacket'),
             addToCartOnesie    : () => cy.get('#add-to-cart-sauce-labs-onesie'),
             removeToCartFleeceJacket    : () => cy.get('#remove-sauce-labs-fleece-jacket'),
-            removeToCartOnesie    : () => cy.get('#remove-sauce-labs-onesie')
+            removeToCartOnesie    : () => cy.get('#remove-sauce-labs-onesie'),
+            cartIconValue    : () => cy.get('.shopping_cart_badge')
+                .invoke('text')
+                .then((priceText) => {
+                    parseFloat(priceText.replace('$', '')); // Convert to number
+                }),
+            cartButton: () => cy.get('#shopping_cart_container'),
         };
         super(elements);
     }

@@ -38,6 +38,7 @@ function assertionE2E(elementType, element, assertion, value, endPoint, _self) {
         'be.enabled': (element) => element.should('be.enabled'),
         'not.be.enabled': (element) => element.should('not.be.enabled'),
         'url.eq'    : (element, value) => element.should('eq', value),
+        'equal.to'    : (element, value) => element.should('eq', value),
     }
     return expectFn[assertion](element, value);
 }

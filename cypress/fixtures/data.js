@@ -55,6 +55,7 @@ class Data {
                 'be enabled'     : 'be.enabled',
                 'not enabled'    : 'not.be.enabled',
                 'match url'      : 'url.eq',
+                'equal to'       : 'equal.to',
             },
         }
     }

@@ -22,7 +22,7 @@ Feature: Login Page
     When the user clicks the button "loginBtn"
     Then the section "errorMessage" should "have text" "Epic sadface: Sorry, this user has been locked out."
   @focus
-  Scenario: TC003 - Successful Login and Logout
+  Scenario: TC003 - Multiple scenarios Workflow
     When the user types in the field "usernameInput" with value "standard_user"
     When the user types in the field "passwordInput" with value "secret_sauce"
     When the user clicks the button "loginBtn"
@@ -36,3 +36,7 @@ Feature: Login Page
     Then the button "addToCartOnesie" should "not exist"
     Then the button "removeToCartFleeceJacket" should "be enabled"
     Then the button "removeToCartOnesie" should "be enabled"
+    Then the "inventory_item_price" of "Sauce Labs Fleece Jacket" is stored in "priceSauceLabsFleeceJacket" variable
+    Then the "inventory_item_price" of "Sauce Labs Onesie" is stored in "priceSauceLabsOnesie" variable
+    Then the section "cartIconValue" should be "equal to" "2"
+    When the user clicks the button "cartButton"
