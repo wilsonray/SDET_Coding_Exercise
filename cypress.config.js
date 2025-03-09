@@ -1,9 +1,14 @@
-const { defineConfig } = require("cypress");
+const {defineConfig}  = require("cypress");
+const setupNodeEvents = require("./cypress/settings/setupNodeEvents");
 
 module.exports = defineConfig({
+  video: false,
   e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+    setupNodeEvents,
+    specPattern      : "cypress/**/*.feature",
+    chromeWebSecurity: false,
+    env              : {
+      "environment": "qa"
+    }
   },
 });
