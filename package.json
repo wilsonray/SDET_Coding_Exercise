@@ -1,0 +1,33 @@
+{
+  "name": "sdet_coding_exercise",
+  "version": "1.0.0",
+  "description": "SDET Coding Exercise in Cypress by Wilson Ray Villanueva",
+  "keywords": [
+    "cypress",
+    "cucumber"
+  ],
+  "homepage": "https://github.com/wilsonray/SDET_Coding_Exercise#readme",
+  "bugs": {
+    "url": "https://github.com/wilsonray/SDET_Coding_Exercise/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wilsonray/SDET_Coding_Exercise.git"
+  },
+  "license": "ISC",
+  "author": "Wilson Ray Villanueva",
+  "scripts": {
+    "test": "cypress open"
+  },
+  "dependencies": {
+    "@badeball/cypress-configuration": "^6.1.1",
+    "@badeball/cypress-cucumber-preprocessor": "^19.2.0",
+    "@cucumber/cucumber-expressions": "^17.0.0",
+    "cypress": "^13.13.3",
+    "cypress-webpack-preprocessor-v5": "^5.0.0-alpha.1",
+    "node-polyfill-webpack-plugin": "^2.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^11.1.0"
+  }
+}
