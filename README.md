@@ -28,7 +28,7 @@ The following software is required to be properly installed/downloaded: <br />
 -Once inside the project, open a terminal <br />
 -Run the command **npm install** to install all the dependencies <br />
 -Run the command **npx cypress open** to open the Cypress Test Runner UI. <br />
--A cypress interface will pop-up, there you can choose the test cases to be executed, acocording to each feature (BDD) <br />
+-A cypress interface will pop up, there you can choose the test cases to be executed, acocording to each feature (BDD) <br />
 -Alternatively, run **npx cypress run** to execute tests in headless mode. <br />
 
 ## Deployment
