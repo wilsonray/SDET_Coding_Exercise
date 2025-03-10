@@ -42,6 +42,10 @@ Then('the prices should be in {word} order', (sortMethod) => {
     pageObject._sortItems(sortMethod);
 });
 
-Then('the {string} of {string} is stored in {string} variable', (elementDetail, group, storeVariable) => {
-    pageObject._captureElementDetail(elementDetail, group, storeVariable);
+Then('the {string} of {string} from {string} page is stored in {string} variable', (elementDetail, group, pageSection, variableKey) => {
+    pageObject._captureElementDetail(elementDetail, group, pageSection, variableKey);
+});
+
+Then(/^"([^"]*)" should ?(?: be)? "([^"]*)" "([^"]*)"$/, (variable1, condition, variable2) => {
+    pageObject._simpleValidate(variable1, condition, variable2);
 });

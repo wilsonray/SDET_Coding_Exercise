@@ -17,6 +17,7 @@ class Data {
             ],
             CONDITIONALS_MAP: {
                 'is equal to'                    : 'equal', //EN_en
+                'equal to'                       : 'equal',
                 'es estructuralmente igual a'    : 'deep.equal',
                 'que inicia con'                 : 'startsWith',
                 'hace match con'                 : 'match',

@@ -34,9 +34,15 @@ Feature: Login Page
     When the user clicks the button "addToCartOnesie"
     Then the button "addToCartFleeceJacket" should "not exist"
     Then the button "addToCartOnesie" should "not exist"
-    Then the button "removeToCartFleeceJacket" should "be enabled"
-    Then the button "removeToCartOnesie" should "be enabled"
-    Then the "inventory_item_price" of "Sauce Labs Fleece Jacket" is stored in "priceSauceLabsFleeceJacket" variable
-    Then the "inventory_item_price" of "Sauce Labs Onesie" is stored in "priceSauceLabsOnesie" variable
+    Then the button "removeFromCartFleeceJacket" should "be enabled"
+    Then the button "removeFromCartOnesie" should "be enabled"
+    Then the "price" of "Sauce Labs Fleece Jacket" from "Products" page is stored in "priceSauceLabsFleeceJacket" variable
+    Then the "price" of "Sauce Labs Onesie" from "Products" page is stored in "priceSauceLabsOnesie" variable
     Then the section "cartIconValue" should be "equal to" "2"
     When the user clicks the button "cartButton"
+    Then the "price" of "Sauce Labs Fleece Jacket" from "Cart" page is stored in "priceSauceLabsFleeceJacketInCart" variable
+    Then the "price" of "Sauce Labs Onesie" from "Cart" page is stored in "priceSauceLabsOnesieInCart" variable
+    Then "priceSauceLabsFleeceJacket" should be "equal to" "priceSauceLabsFleeceJacketInCart"
+    When the user clicks the button "removeFromCartOnesie"
+    Then the "value" of "cartIconValue" from "Cart" page is stored in "cartNumberOfItems" variable
+    Then the "number" of "Sauce Labs Fleece Jacket" from "Cart" page is stored in "numberOfSauceLabsFleeceJacket" variable

@@ -173,14 +173,51 @@ module.exports = class Main {
         });
     }
 
-    _captureElementDetail(elementDetail, group, storeVariable){
-        return cy.get('.inventory_item_description:contains("' + group + '")')
-            .find('.'+elementDetail)
+    _captureElementDetail(elementDetail, group, pageSection, variableKey) {
+        const sectionSelectors = {
+            Products: '.inventory_item_description',
+            Cart: '.cart_item',
+        };
+
+        const containerSelectors = {
+            price: '.inventory_item_price',
+            number: '.cart_quantity',
+            value: '.shopping_cart_container',
+        };
+
+        const searchInSelector = sectionSelectors[pageSection];
+        const container = containerSelectors[elementDetail];
+
+        if (!searchInSelector || !container) {
+            throw new Error(`Invalid parameters: pageSection=${pageSection}, elementDetail=${elementDetail}`);
+        }
+        if (elementDetail === 'value') {
+            return cy.get(container)
+                .invoke('text')
+                .then((capturedText) => {
+                    const extractedValue = parseFloat(capturedText.replace('$', '')); // Convert to number
+                    cy.log('Value:', extractedValue);
+                    this.storedVariables[variableKey] = extractedValue;
+                });
+        }
+        return cy.get(`${searchInSelector}:contains("${group}")`)
+            .find(container)
             .invoke('text')
-            .then((priceText) => {
-                const price = parseFloat(priceText.replace('$', '')); // Convert to number
-                cy.log('Price:', price);
-                this.storedVariables[storeVariable] = price;
+            .then((capturedText) => {
+                const extractedValue = elementDetail === 'price'
+                    ? parseFloat(capturedText.replace('$', ''))
+                    : parseFloat(capturedText);
+
+                cy.log(`${elementDetail}:`, extractedValue);
+                this.storedVariables[variableKey] = extractedValue;
             });
+    }
+
+
+    _simpleValidate(variable1, condition, variable2){
+        const expectedValue1 = this.storedVariables[`${variable1}`]
+        const expectedValue2 = this.storedVariables[`${variable2}`]
+        const chaiAssertion = getChaiAssertion(this.constants.CONDITIONALS_MAP, condition);
+        assertionMap(expectedValue1, expectedValue2, chaiAssertion);
     }
 }

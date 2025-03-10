@@ -16,12 +16,12 @@ class Login extends Main {
             sortActiveOption  : () => cy.get('span[class="active_option"]'),
             addToCartFleeceJacket    : () => cy.get('#add-to-cart-sauce-labs-fleece-jacket'),
             addToCartOnesie    : () => cy.get('#add-to-cart-sauce-labs-onesie'),
-            removeToCartFleeceJacket    : () => cy.get('#remove-sauce-labs-fleece-jacket'),
-            removeToCartOnesie    : () => cy.get('#remove-sauce-labs-onesie'),
+            removeFromCartFleeceJacket    : () => cy.get('#remove-sauce-labs-fleece-jacket'),
+            removeFromCartOnesie    : () => cy.get('#remove-sauce-labs-onesie'),
             cartIconValue    : () => cy.get('.shopping_cart_badge')
                 .invoke('text')
-                .then((priceText) => {
-                    parseFloat(priceText.replace('$', '')); // Convert to number
+                .then((value) => {
+                    parseFloat(value); // Convert to number
                 }),
             cartButton: () => cy.get('#shopping_cart_container'),
         };
