@@ -49,3 +49,7 @@ Then('the {string} of {string} from {string} page is stored in {string} variable
 Then(/^"([^"]*)" should ?(?: be)? "([^"]*)" "([^"]*)"$/, (variable1, condition, variable2) => {
     pageObject._simpleValidate(variable1, condition, variable2);
 });
+
+Given('user data is loaded', () => {
+    pageObject._getUserData();
+});

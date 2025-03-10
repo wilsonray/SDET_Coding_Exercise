@@ -1,7 +1,25 @@
 const util = require("util");
+const fs = require('fs');
 
 function isDynamic(value) {
     return Boolean(/#([a-zA-Z0-9_]+)#/g.test(value));
+}
+
+function getUserDataDetails(config) {
+    if (!fs.existsSync('.env')) throw new Error('".env" file not found');
+
+    const envFileContents = fs.readFileSync('.env', 'utf8');
+
+    const keyValuePairs = envFileContents
+        .split('\n')
+        .filter(line => line.includes('=') && !line.startsWith('#')) // Ignore empty lines and comments
+        .map(line => line.split('=').map(part => part.trim())) // Trim spaces
+        .reduce((accumulator, [key, value]) => {
+            accumulator[key] = value?.replace(/^"(.*)"$/, '$1') || ''; // Remove surrounding quotes
+            return accumulator;
+        }, {});
+
+    return keyValuePairs; // Return all key-value pairs dynamically
 }
 
 function isUniqueDynamic(value) {
@@ -187,6 +205,7 @@ function getNumberDate(days) {
 
 module.exports = {
     isDynamic,
+    getUserDataDetails,
     isUniqueDynamic,
     extractAndSetDynamicValue,
     assertionMap,

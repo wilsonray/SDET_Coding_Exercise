@@ -27,6 +27,7 @@ module.exports = class Main {
         this.response        = {};
         this.currentEndPoint = {};
         this.storedVariables = {};
+        this.userData        = {};
     }
 
     _loadEndPoint(endPoint){
@@ -79,6 +80,14 @@ module.exports = class Main {
         switch (keyName) {
             case 'BASE_URL'         :
                 return `${this.urls['base']}`;
+            case 'usernameData':
+                return this.userData['username'];
+            case 'passwordData':
+                return this.userData['password'];
+            case 'errorusernameData':
+                return this.userData['errorusername'];
+            case 'lockedoutuserData':
+                return this.userData['lockedoutuser'];
             default                 :
                 return this.data[keyName];
         }
@@ -221,5 +230,12 @@ module.exports = class Main {
         const expectedValue2 = this.storedVariables[variable2] ?? variable2;
         const chaiAssertion = getChaiAssertion(this.constants.CONDITIONALS_MAP, condition);
         assertionMap(expectedValue1, expectedValue2, chaiAssertion);
+    }
+
+    _getUserData() {
+        cy.task('getUser', { log: false }).then(userData => {
+            this.userData = userData;
+            return true;
+        })
     }
 }

@@ -3,28 +3,29 @@ Feature: Login Page
 
   Background:
     Given POM configuration has been initialized for "login"
+    Given user data is loaded
     Given the user goes to the login page
-
+  
   Scenario: TC001 - Successful Login and Logout
-    When the user types in the field "usernameInput" with value "standard_user"
-    When the user types in the field "passwordInput" with value "secret_sauce"
+    When the user types in the field "usernameInput" with value "#usernameData#"
+    When the user types in the field "passwordInput" with value "#passwordData#"
     When the user clicks the button "loginBtn"
     Then the element "title" should "have text" "Swag Labs"
-    Then the image "shoppingCart" should "is visible"
+    Then the image "shoppingCart" should "be visible"
     Then the element "url" should "match url" "https://www.saucedemo.com/inventory.html"
     When the user clicks the button "menuBtn"
     When the user clicks the button "logoutBtn"
     Then the element "url" should "match url" "https://www.saucedemo.com/"
   
   Scenario: TC002 - Failed Login
-    When the user types in the field "usernameInput" with value "locked_out_user"
-    When the user types in the field "passwordInput" with value "secret_sauce"
+    When the user types in the field "usernameInput" with value "#lockedoutuserData#"
+    When the user types in the field "passwordInput" with value "#passwordData#"
     When the user clicks the button "loginBtn"
     Then the section "errorMessage" should "have text" "Epic sadface: Sorry, this user has been locked out."
   
   Scenario: TC003 - Multiple scenarios Workflow
-    When the user types in the field "usernameInput" with value "standard_user"
-    When the user types in the field "passwordInput" with value "secret_sauce"
+    When the user types in the field "usernameInput" with value "#usernameData#"
+    When the user types in the field "passwordInput" with value "#passwordData#"
     When the user clicks the button "loginBtn"
     When the user selects the option "sortProduct" with value "lohi"
     Then the section "sortActiveOption" should "have text" "Price (low to high)"
@@ -60,8 +61,8 @@ Feature: Login Page
     When the user clicks the button "backHomeButton"
   
   Scenario: TC004 - Error User
-    When the user types in the field "usernameInput" with value "error_user"
-    When the user types in the field "passwordInput" with value "secret_sauce"
+    When the user types in the field "usernameInput" with value "#errorusernameData#"
+    When the user types in the field "passwordInput" with value "#passwordData#"
     When the user clicks the button "loginBtn"
     When the user clicks the button "addToCartBikeLight"
     When the user clicks the button "cartButton"
@@ -71,10 +72,10 @@ Feature: Login Page
     When the user types in the field "zipPostalCodeInput" with value "99999"
     When the user clicks the button "continueButton"
     When the user clicks the button "finishButton"
-  @focus
+  
   Scenario: TC005 - Bonus (Multiple Tabs)
-    When the user types in the field "usernameInput" with value "standard_user"
-    When the user types in the field "passwordInput" with value "secret_sauce"
+    When the user types in the field "usernameInput" with value "#usernameData#"
+    When the user types in the field "passwordInput" with value "#passwordData#"
     When the user clicks the button "loginBtn"
     When the user clicks the link "twitterLink"
     When the user clicks the link "facebookLink"

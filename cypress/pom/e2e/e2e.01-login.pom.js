@@ -1,4 +1,7 @@
 import Main from '../main.pom.js';
+const {
+    isDynamic
+}         = require('../../settings/helpers.js');
 
 class Login extends Main {
     constructor() {
@@ -40,6 +43,7 @@ class Login extends Main {
     }
 
     sendAction(action, elementType, elementId, content) {
+        let expectedContent = isDynamic(content) ? super._loadDynamicData(content, "login") : content;
         let element = super._getElement(elementId);
         switch (elementType) {
             case 'link':
@@ -49,7 +53,7 @@ class Login extends Main {
                 element.click();
                 break;
             case 'field':
-                element.type(content);
+                element.type(expectedContent);
                 break;
             case 'option':
                 element.select(content);
