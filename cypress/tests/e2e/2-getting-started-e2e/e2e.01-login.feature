@@ -21,7 +21,7 @@ Feature: Login Page
     When the user types in the field "passwordInput" with value "secret_sauce"
     When the user clicks the button "loginBtn"
     Then the section "errorMessage" should "have text" "Epic sadface: Sorry, this user has been locked out."
-  @focus
+  
   Scenario: TC003 - Multiple scenarios Workflow
     When the user types in the field "usernameInput" with value "standard_user"
     When the user types in the field "passwordInput" with value "secret_sauce"
@@ -58,4 +58,25 @@ Feature: Login Page
     Then the "text" of "Thank you for your order!" from "Finish" page is stored in "thankYouText" variable
     Then "thankYouText" should be "equal to" "Thank you for your order!"
     When the user clicks the button "backHomeButton"
+  
+  Scenario: TC004 - Error User
+    When the user types in the field "usernameInput" with value "error_user"
+    When the user types in the field "passwordInput" with value "secret_sauce"
+    When the user clicks the button "loginBtn"
+    When the user clicks the button "addToCartBikeLight"
+    When the user clicks the button "cartButton"
+    When the user clicks the button "checkoutButton"
+    When the user types in the field "firstNameInput" with value "QA_Wilson_Ray"
+    When the user types in the field "lastNameInput" with value "QA_Test"
+    When the user types in the field "zipPostalCodeInput" with value "99999"
+    When the user clicks the button "continueButton"
+    When the user clicks the button "finishButton"
+  @focus
+  Scenario: TC005 - Bonus (Multiple Tabs)
+    When the user types in the field "usernameInput" with value "standard_user"
+    When the user types in the field "passwordInput" with value "secret_sauce"
+    When the user clicks the button "loginBtn"
+    When the user clicks the link "twitterLink"
+    When the user clicks the link "facebookLink"
+    When the user clicks the link "linkedinLink"
     

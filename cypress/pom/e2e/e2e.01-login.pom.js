@@ -31,6 +31,10 @@ class Login extends Main {
             continueButton: () => cy.get('#continue'),
             finishButton: () => cy.get('#finish'),
             backHomeButton: () => cy.get('#back-to-products'),
+            addToCartBikeLight    : () => cy.get('#add-to-cart-sauce-labs-bike-light'),
+            twitterLink    : () => cy.get('li[class="social_twitter"]'),
+            facebookLink    : () => cy.get('li[class="social_facebook"]'),
+            linkedinLink    : () => cy.get('li[class="social_linkedin"]'),
         };
         super(elements);
     }
