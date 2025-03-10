@@ -24,6 +24,13 @@ class Login extends Main {
                     parseFloat(value); // Convert to number
                 }),
             cartButton: () => cy.get('#shopping_cart_container'),
+            checkoutButton: () => cy.get('#checkout'),
+            firstNameInput: () => cy.get('#first-name'),
+            lastNameInput: () => cy.get('#last-name'),
+            zipPostalCodeInput: () => cy.get('#postal-code'),
+            continueButton: () => cy.get('#continue'),
+            finishButton: () => cy.get('#finish'),
+            backHomeButton: () => cy.get('#back-to-products'),
         };
         super(elements);
     }

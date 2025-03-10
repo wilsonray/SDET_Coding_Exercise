@@ -177,12 +177,16 @@ module.exports = class Main {
         const sectionSelectors = {
             Products: '.inventory_item_description',
             Cart: '.cart_item',
+            Checkout: '.summary_info',
+            Finish: '.checkout_complete_container',
         };
 
         const containerSelectors = {
             price: '.inventory_item_price',
             number: '.cart_quantity',
-            value: '.shopping_cart_container',
+            value: '.shopping_cart_badge',
+            totalPrice: '.summary_subtotal_label',
+            text: '.complete-header',
         };
 
         const searchInSelector = sectionSelectors[pageSection];
@@ -195,7 +199,7 @@ module.exports = class Main {
             return cy.get(container)
                 .invoke('text')
                 .then((capturedText) => {
-                    const extractedValue = parseFloat(capturedText.replace('$', '')); // Convert to number
+                    const extractedValue = parseInt(capturedText, 10) || 0; // Convert to number
                     cy.log('Value:', extractedValue);
                     this.storedVariables[variableKey] = extractedValue;
                 });
@@ -204,19 +208,17 @@ module.exports = class Main {
             .find(container)
             .invoke('text')
             .then((capturedText) => {
-                const extractedValue = elementDetail === 'price'
-                    ? parseFloat(capturedText.replace('$', ''))
-                    : parseFloat(capturedText);
-
+                const extractedValue = (elementDetail === 'price' || elementDetail === 'totalPrice')
+                    ? parseFloat(capturedText.replace(/^.*\$/, ''))
+                    : (elementDetail==='text') ? capturedText : parseFloat(capturedText);
                 cy.log(`${elementDetail}:`, extractedValue);
                 this.storedVariables[variableKey] = extractedValue;
             });
     }
 
-
     _simpleValidate(variable1, condition, variable2){
         const expectedValue1 = this.storedVariables[`${variable1}`]
-        const expectedValue2 = this.storedVariables[`${variable2}`]
+        const expectedValue2 = this.storedVariables[variable2] ?? variable2;
         const chaiAssertion = getChaiAssertion(this.constants.CONDITIONALS_MAP, condition);
         assertionMap(expectedValue1, expectedValue2, chaiAssertion);
     }

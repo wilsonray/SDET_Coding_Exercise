@@ -46,3 +46,16 @@ Feature: Login Page
     When the user clicks the button "removeFromCartOnesie"
     Then the "value" of "cartIconValue" from "Cart" page is stored in "cartNumberOfItems" variable
     Then the "number" of "Sauce Labs Fleece Jacket" from "Cart" page is stored in "numberOfSauceLabsFleeceJacket" variable
+    Then "cartNumberOfItems" should be "equal to" "numberOfSauceLabsFleeceJacket"
+    When the user clicks the button "checkoutButton"
+    When the user types in the field "firstNameInput" with value "QA_Wilson_Ray"
+    When the user types in the field "lastNameInput" with value "QA_Test"
+    When the user types in the field "zipPostalCodeInput" with value "99999"
+    When the user clicks the button "continueButton"
+    Then the "totalPrice" of "Item total" from "Checkout" page is stored in "priceTotal" variable
+    Then "priceTotal" should be "equal to" "priceSauceLabsFleeceJacket"
+    When the user clicks the button "finishButton"
+    Then the "text" of "Thank you for your order!" from "Finish" page is stored in "thankYouText" variable
+    Then "thankYouText" should be "equal to" "Thank you for your order!"
+    When the user clicks the button "backHomeButton"
+    
