@@ -21,7 +21,7 @@ Feature: Example test for JSONPlaceholder
   test API method from JSONPlaceholder (POST, GET, PUT, DELETE)
 
   Background:
-    Given the Page Object Model configuration for "posts" has been initialized
+    Given POM configuration has been initialized for "posts"
 
   Scenario:Successful creation of a post
     When a POST request is sent to the "posts" endpoint

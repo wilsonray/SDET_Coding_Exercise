@@ -21,7 +21,7 @@ Feature: Example test for JSONPlaceholder
   test API method from JSONPlaceholder on comments (POST, GET, PUT, DELETE)
 
   Background:
-    Given the Page Object Model configuration for "comments" has been initialized
+    Given POM configuration has been initialized for "comments"
 
   Scenario:Successful creation of a comments
     When a POST request is sent to the "comments" endpoint
